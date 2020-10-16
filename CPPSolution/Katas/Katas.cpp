@@ -3,6 +3,48 @@
 
 #include "pch.h"
 
+std::string reverseIT(std::string str) {
+	std::string reversed;
+	decltype(str.size()) revIter = str.size() - 1;
+	for (auto b : str) reversed += str[revIter--];
+	return reversed;
+}
+
+std::string spinWords(const std::string &str)
+{
+	std::vector<std::string> vec;
+	// split into substring 
+	std::string es;
+	for (auto c : str)
+	{
+		if (c != ' ')
+			es += c;
+		else
+		{
+			vec.push_back(es);
+			vec.push_back(" ");
+			es = "";
+		}
+	}
+	vec.push_back(es);
+	vec.push_back(" ");
+
+	if (vec.size() > 1) vec.pop_back();
+	// reverse 
+	for (auto &a : vec)
+	{
+		if (a.size() >= 5)
+		{
+			a = reverseIT(a);
+		}
+	}
+
+	std::string resultStr;
+	for (auto a : vec) resultStr += a;
+	return resultStr;
+
+}// spinWords
+
 int main()
 {
     std::cout << "Hello World!\n"; 
