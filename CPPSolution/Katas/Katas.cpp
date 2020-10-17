@@ -1,7 +1,10 @@
 // Katas.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include "Katas.h"
 
 std::string reverseIT(std::string str) {
 	std::string reversed;
@@ -45,11 +48,12 @@ std::string spinWords(const std::string &str)
 
 }// spinWords
 
-int main()
+/* int main()
 {
     std::cout << "Hello World!\n"; 
 }
-
+*/
+// 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
