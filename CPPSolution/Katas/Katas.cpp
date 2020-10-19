@@ -63,5 +63,25 @@ std::string highAndLow(const std::string &strT)
 	std::string res = std::to_string(max) + ' ' + std::to_string(min);
 	return res;
 }
-// spinWords
+
+std::string DNAStrand(const std::string& dna) {
+	std::string str(dna);
+	for (auto &e : str) {
+		switch (e) {
+		case 'G':
+			e = 'C';
+			break; 
+		case 'C':
+			e = 'G';
+			break;
+		case 'T':
+			e = 'A';
+			break;
+		case 'A':
+			e = 'T';
+			break;
+		} 
+	}
+	return str; 
+}
 

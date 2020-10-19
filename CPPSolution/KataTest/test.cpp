@@ -15,3 +15,11 @@ TEST(KataTests, highAndLow) {
 	EXPECT_EQ(1, 1);
 	EXPECT_TRUE(true);
 }
+TEST(KataTests, DNAStrand) {
+	std::string input("CATA");
+	std::string output("GTAT");
+
+	EXPECT_EQ(DNAStrand(input), output);
+	EXPECT_EQ(1, 1);
+	EXPECT_TRUE(true);
+}
