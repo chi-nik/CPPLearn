@@ -113,17 +113,16 @@ std::string cleanString(std::string s) {
 std::string range_extraction(std::vector<int> args) 
 {
 	std::string res;
+	args.push_back(args.back());
 	auto begRng = args.begin();
 
 	for (auto it = args.begin(); it != args.end(); ++it)
 	{
 		// decide if the string is broken
-		bool lastEntry = (it + 1) == args.end();
-		if ((it - begRng != *it - *begRng ) || lastEntry )
+		bool isBreakingString = it - begRng != *it - *begRng;
+		if ( isBreakingString )
 		{
-			auto lastPos = lastEntry ? it : it-1;
-			//if (it + 1 == args.end)  lastPos = it;
-			// write string
+			auto lastPos = it - 1;
 			switch (lastPos+1 - begRng)
 			{
 			case 1:
@@ -142,12 +141,6 @@ std::string range_extraction(std::vector<int> args)
 		}
 	}
 	res.pop_back(); // remove ,
-		
-		// break of string
-		// length 1, 
-		// length 2,
-		// length 3>
-
 	return res;
 	
 }
