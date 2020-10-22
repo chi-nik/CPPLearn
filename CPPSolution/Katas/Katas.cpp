@@ -84,4 +84,70 @@ std::string DNAStrand(const std::string& dna) {
 	}
 	return str; 
 }
+std::string cleanString2(std::string s) 
+{
+	std::string ctrlStr(s);
+	std::string resStr;
+	auto csIter = ctrlStr.begin();
+	//auto resIter = resStr.begin();
+	while (csIter != ctrlStr.end()) 
+	{ 
+		if (*csIter != '#') resStr.push_back(*csIter); 
+		else if(!resStr.empty()) resStr.pop_back();  
+		csIter++;
+	}
 
+	return resStr;
+
+}
+std::string cleanString(std::string s) { 
+	std::string resStr;
+	for (auto sChar: s) 
+	{ 
+		if (sChar != '#') resStr.push_back(sChar); 
+		else if(!resStr.empty()) resStr.pop_back();  
+	}
+
+	return resStr;
+}
+std::string range_extraction(std::vector<int> args) 
+{
+	std::string res;
+	auto begRng = args.begin();
+
+	for (auto it = args.begin(); it != args.end(); ++it)
+	{
+		// decide if the string is broken
+		bool lastEntry = (it + 1) == args.end();
+		if ((it - begRng != *it - *begRng ) || lastEntry )
+		{
+			auto lastPos = lastEntry ? it : it-1;
+			//if (it + 1 == args.end)  lastPos = it;
+			// write string
+			switch (lastPos+1 - begRng)
+			{
+			case 1:
+				res.append(std::to_string(*begRng) + ",");
+				break;
+			case 2:
+				res.append(std::to_string(*begRng) + "," + std::to_string(*lastPos) + ",");
+				break;
+			default:
+				res.append(std::to_string(*begRng) + "-" + std::to_string(*lastPos) + ",");
+				break;
+			}
+			//reset
+			begRng = it;
+
+		}
+	}
+	res.pop_back(); // remove ,
+		
+		// break of string
+		// length 1, 
+		// length 2,
+		// length 3>
+
+	return res;
+	
+}
