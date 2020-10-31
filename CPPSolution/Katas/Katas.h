@@ -13,4 +13,4 @@ std::string cleanString(std::string s);
 //https://www.codewars.com/kata/51ba717bb08c1cd60f00002f/train/cpp
 std::string range_extraction(std::vector<int> args);
 // https://www.codewars.com/kata/5672682212c8ecf83e000050/train/cpp
-//int dblLinear(int n);
+int dblLinear(int n);
