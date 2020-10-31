@@ -152,13 +152,13 @@ int dblLinear(int n) {
 	static int begPrevBatch = 0;
 	static int curBatchNum = 0;
 	static int indexMaxCurBatch = 0;
-	static int thisBatchMax = 1;
+	static int thisBatchMax = 1; 
 
-
-	// does sit need to grow?
+	// does it need to grow?
 	if (n <= indexMaxCurBatch) return listOfInt[n];
 
-	do {
+	do 
+	{
 		curBatchNum++;
 		thisBatchMax += std::pow(3, curBatchNum);
 		int lastAddedBatchMin;
@@ -175,39 +175,16 @@ int dblLinear(int n) {
 				lastAddedBatchMin = std::min(lastAddedBatchMin, y3);
 				lastAddedBatchMin = std::min(lastAddedBatchMin, y2);
 				listOfInt.push_back(y2);
-				std::cout << "VALUE1 " << listOfInt.back() << " ";
 				listOfInt.push_back(y3);
 				++begPrevBatch;
-				std::cout << "VALUE2 " << listOfInt.back() << std::endl;
 			}
-			int lastAddedBatchMax = listOfInt.back();
-
-
-
-			int sizeAdjustment;
-			sizeAdjustment = listOfInt.size();
-			std::cout << " BeforebegPrevBatch : " << begPrevBatch << std::endl;
-			std::cout << "Output before sorting:\n";
-			for (auto vals : listOfInt) std::cout << vals << ' ';
-			std::cout << std::endl;
-
+			int lastAddedBatchMax = listOfInt.back();   
 			std::sort(listOfInt.begin(), listOfInt.end());
-			std::vector<int>::iterator it;
-			it = std::unique(listOfInt.begin(), listOfInt.end());
+			auto it = std::unique(listOfInt.begin(), listOfInt.end());
 			listOfInt.resize(std::distance(listOfInt.begin(), it));
-			std::cout << "Output after sorting:\n";
-			int counter = 0;
-			for (auto vals : listOfInt) std::cout << counter++ << ' ';
-			std::cout << std::endl;
-			for (auto vals : listOfInt) std::cout << vals << ' ';
-			std::cout << std::endl;
-			begPrevBatch = std::find(listOfInt.begin(), listOfInt.end(), lastAddedBatchMin) - listOfInt.begin();
-			std::cout << "begPrevBatch : " << begPrevBatch << std::endl;
-			std::cout << "thisBatchMax: " << thisBatchMax << std::endl;
-
+			begPrevBatch = std::find(listOfInt.begin(), listOfInt.end(), lastAddedBatchMin) - listOfInt.begin(); 
 		} while (thisBatchMax >= lastAddedBatchMin);
 		indexMaxCurBatch = std::find(listOfInt.begin(), listOfInt.end(), thisBatchMax) - listOfInt.begin();
-		std::cout << "indexMaxCurBatch : " << indexMaxCurBatch << std::endl;
 	} while (n > indexMaxCurBatch);
 
 	return listOfInt[n];
