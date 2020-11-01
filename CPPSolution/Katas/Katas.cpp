@@ -146,18 +146,19 @@ std::string range_extraction(std::vector<int> args)
 	
 }
 
-int dblLinear(int n) {
-
-	static std::vector<int> listOfInt = { 1 };
+unsigned long long  dblLinear(int n)
+{ 
+	static std::vector<unsigned long long> listOfInt = { 1 };
+	listOfInt.reserve(2000000);
 	static int begPrevBatch = 0;
 	static int curBatchNum = 0;
 	static int indexMaxCurBatch = 0;
-	static int thisBatchMax = 1; 
+	static unsigned long long thisBatchMax = 1;
 
 	// does it need to grow?
 	if (n <= indexMaxCurBatch) return listOfInt[n];
 
-	do 
+	do
 	{
 		curBatchNum++;
 		thisBatchMax += std::pow(3, curBatchNum);
@@ -166,26 +167,24 @@ int dblLinear(int n) {
 		{
 			// grow
 			int endPrevBatch = listOfInt.size() - 1;
-			lastAddedBatchMin = INT_MAX;
-
+			lastAddedBatchMin = listOfInt[begPrevBatch] * 2 + 1;
 			// add batch untill max batch_cb < min lastaddedBatch 
 			while (begPrevBatch <= endPrevBatch) {
-				int y2 = (listOfInt[begPrevBatch]) * 2 + 1;
-				int y3 = (listOfInt[begPrevBatch]) * 3 + 1;
-				lastAddedBatchMin = std::min(lastAddedBatchMin, y3);
-				lastAddedBatchMin = std::min(lastAddedBatchMin, y2);
+				unsigned long long y2 = (listOfInt[begPrevBatch]) * 2 + 1;
+				unsigned long long y3 = (listOfInt[begPrevBatch]) * 3 + 1;
 				listOfInt.push_back(y2);
 				listOfInt.push_back(y3);
 				++begPrevBatch;
 			}
-			int lastAddedBatchMax = listOfInt.back();   
-			std::sort(listOfInt.begin(), listOfInt.end());
-			auto it = std::unique(listOfInt.begin(), listOfInt.end());
+
+			auto begRelRegion = listOfInt.begin() + indexMaxCurBatch + 1;
+			std::sort(begRelRegion, listOfInt.end());
+			auto it = std::unique(begRelRegion, listOfInt.end());
 			listOfInt.resize(std::distance(listOfInt.begin(), it));
-			begPrevBatch = std::find(listOfInt.begin(), listOfInt.end(), lastAddedBatchMin) - listOfInt.begin(); 
+			begPrevBatch = std::find(begRelRegion, listOfInt.end(), lastAddedBatchMin) - listOfInt.begin();
 		} while (thisBatchMax >= lastAddedBatchMin);
 		indexMaxCurBatch = std::find(listOfInt.begin(), listOfInt.end(), thisBatchMax) - listOfInt.begin();
 	} while (n > indexMaxCurBatch);
 
 	return listOfInt[n];
-}
+};
