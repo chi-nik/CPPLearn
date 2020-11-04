@@ -1,6 +1,7 @@
 
 #include "Katas.h"
 #include <limits>
+#include <cctype>
 #include <algorithm>
 
 std::string reverseIT(std::string str) {
@@ -188,3 +189,20 @@ unsigned long long  dblLinear(int n)
 
 	return listOfInt[n];
 };
+
+
+
+int solve(std::string s) {
+	std::string result;
+	int lm = INT_MIN;
+	for (auto c : s)
+	{
+		if (std::isdigit(c))
+		{
+			result += c;
+			lm = std::max(lm, std::stoi(result));
+		}
+		else if (!result.empty())  result.clear();
+	}
+	return lm;
+} 
