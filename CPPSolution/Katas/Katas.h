@@ -16,3 +16,6 @@ std::string range_extraction(std::vector<int> args);
 unsigned long long dblLinear(int n); 
 //https://www.codewars.com/kata/59dd2c38f703c4ae5e000014
 int solve(std::string s);
+// https://www.codewars.com/kata/5268acac0d3f019add000203
+bool read_commands(const std::vector<char>& commands);
+

@@ -2,6 +2,7 @@
 #include "Katas.h"
 #include <limits>
 #include <cctype>
+#include <map>
 #include <algorithm>
 
 std::string reverseIT(std::string str) {
@@ -206,3 +207,24 @@ int solve(std::string s) {
 	}
 	return lm;
 } 
+
+bool read_commands(const std::vector<char>& commands) {
+	enum State {q1, q2, q3 };
+	State current = q1;
+	std::map<State, std::map<char, State>> tm;
+	tm[q1]['1'] = q2;
+	tm[q1]['0'] = q1;
+	tm[q2]['1'] = q2;
+	tm[q2]['0'] = q3;
+	tm[q3]['1'] = q2;
+	tm[q3]['0'] = q2;
+	for (const auto c : commands) {
+		current = tm[current][c];
+
+	}
+	return current == q2;
+
+
+
+
+}
