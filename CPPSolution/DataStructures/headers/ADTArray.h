@@ -70,7 +70,40 @@ public:
 		std::cout << std::endl;
 	}
 	
-	void Add(size_type n);
+	void Insert(size_type i, T elem) 
+	{
+		if(i<length){
+		Insert(i + 1, Array[i]);
+		Array[i] = elem;
+		}
+		else
+		{
+			Append(elem);
+		} 
+	}
+
+	T Move(size_type s, size_type d) 
+	{ 
+		auto former_dest = Array[d];
+		Array[d] = Array[s];
+		return  former_dest;
+	}
+
+	void Delete(size_type i)
+	{
+		if (i < length-1)
+		{
+			Move(i + 1, i);
+			Delete(i + 1);
+		}
+		else {
+			length--;
+		}
+
+
+	}
+		
+
 	
 	// insert(Index i, v
 	
