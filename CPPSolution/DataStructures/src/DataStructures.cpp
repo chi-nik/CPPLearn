@@ -1,10 +1,10 @@
 #include <iostream>
 #include "../headers/ADTArray.h"
 #include "../headers/ArrayIter.h"
+/*
 int main()
 {
-	ArrayIter a1;
-	
+	ArrayIter a1; 
 	a1.Display();
 	/*
 	a1.Append(4);
@@ -20,7 +20,8 @@ int main()
 	a1.Display();
 	a1.Delete(6);
 	a1.Display();
-	*/
+	
     std::cout << "Hello World!\n"; 
-}
+} 
+*/
 
