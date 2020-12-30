@@ -155,10 +155,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\ADTArray.cpp" />
+    <ClCompile Include="src\ArrayAtom.cpp" />
+    <ClCompile Include="src\ArrayIter.cpp" />
     <ClCompile Include="src\DataStructures.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\ArrayAtom.h" />
+    <ClInclude Include="headers\ArrayIter.h" />
     <ClInclude Include="headers\ADTArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
