@@ -78,3 +78,29 @@ void ArrayAtom::Delete(size_type i)
 
 
 }
+
+ArrayAtom::size_type ArrayAtom::Search(T elem)
+{
+	return size_type();
+}
+
+void ArrayAtom::Reverse()
+{
+}
+
+void ArrayAtom::Shift(size_type i)
+{
+}
+
+void ArrayAtom::Rotate(size_type i)
+{
+}
+
+bool ArrayAtom::isSorted()
+{
+	return false;
+}
+
+void ArrayAtom::Merge(T *)
+{
+}
