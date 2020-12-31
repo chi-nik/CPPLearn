@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 class ADTArrayBase
 {
 protected:
@@ -34,6 +35,7 @@ public:
 	virtual T* GetArray() { return Array; } 
 	virtual size_type GetSize() { return size; } 
 	virtual size_type GetLength() { return length; }
+	virtual std::vector<int> GetVector() { return std::vector<int>(Array, Array+length); }
 
 	virtual T Get(size_type i) { return Array[i]; }
 	// Abstract functions
