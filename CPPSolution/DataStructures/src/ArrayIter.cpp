@@ -1,6 +1,4 @@
-#include "../headers/ArrayIter.h"
-
-
+#include "../headers/ArrayIter.h" 
 
 ArrayIter::ArrayIter()
 {
