@@ -31,7 +31,12 @@ public:
 		}
 		std::cout << std::endl;
 	}
-	
+	virtual T* GetArray() { return Array; } 
+	virtual size_type GetSize() { return size; } 
+	virtual size_type GetLength() { return length; }
+
+	virtual T Get(size_type i) { return Array[i]; }
+	// Abstract functions
 	virtual void Insert(size_type i, T elem) = 0; 
 	virtual	void Delete(size_type i) = 0; 
 	
