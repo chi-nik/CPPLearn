@@ -9,6 +9,8 @@ public:
 
 
 	// Inherited via ADTArrayBase
+
+	/// Pushes next elements to the side untill the end (size)
 	virtual void Insert(size_type i, T elem) override;
 
 	virtual void Delete(size_type i) override;

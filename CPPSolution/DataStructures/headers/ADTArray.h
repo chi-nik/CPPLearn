@@ -20,6 +20,7 @@ public:
 	{
 		Array = new T[ARRAY_SIZE];
 		size = ARRAY_SIZE;
+		for (int i = 0; i < size; i++) Array[i] = 0;
 		length = 0;
 
 	}

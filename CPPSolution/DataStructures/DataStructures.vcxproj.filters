@@ -29,10 +29,10 @@
     <ClInclude Include="headers\ADTArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\ArrayIter.h">
+    <ClInclude Include="headers\ArrayAtom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\ArrayAtom.h">
+    <ClInclude Include="headers\ArrayIter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

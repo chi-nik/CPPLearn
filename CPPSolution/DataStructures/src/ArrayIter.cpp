@@ -9,7 +9,13 @@ ArrayIter::~ArrayIter()
 
 void ArrayIter::Insert(size_type i, T elem)
 {
-
+	// Corner cases
+	// i L S
+	// 1. l == S (done)
+	// 2. i > l
+	int j = length < size ? length++ : length - 1;
+	for (; j > i; j--) Array[j] = Array[j - 1]; 
+	Array[i] = elem;
 
 }
 

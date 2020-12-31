@@ -59,10 +59,10 @@ TEST_F(ArrayIterTest, Insert_fullIncr) {
 }
 
 TEST_F(ArrayIterTest, Insert_ott) { 
-	empty.Insert(2, 99); 
-	EXPECT_EQ(empty.GetLength(), 5);
-	EXPECT_EQ(empty.GetSize(), 10); 
-	ASSERT_THAT(empty.GetVector(), ElementsAre(0,1,99,2,3));
+	ott.Insert(2, 99); 
+	EXPECT_EQ(ott.GetLength(), 5);
+	EXPECT_EQ(ott.GetSize(), 10); 
+	ASSERT_THAT(ott.GetVector(), ElementsAre(0,1,99,2,3));
 }
 TEST_F(ArrayIterTest, Delete) { }
 TEST_F(ArrayIterTest, Search) { }
