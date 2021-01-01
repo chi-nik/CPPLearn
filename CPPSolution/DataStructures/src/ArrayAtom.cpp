@@ -50,7 +50,7 @@ ArrayAtom::T ArrayAtom::Move(size_type s, size_type d)
 	return  former_dest;
 }
 
-void ArrayAtom::Insert(size_type i, T elem)
+ArrayAtom::T ArrayAtom::Insert(size_type i, T elem)
 {
 	if (i < length) {
 		Insert(i + 1, Array[i]);
@@ -60,9 +60,10 @@ void ArrayAtom::Insert(size_type i, T elem)
 	{
 		Append(elem);
 	}
+	return -1; //Doesn't matter
 }
 
-void ArrayAtom::Delete(size_type i)
+ArrayAtom::T ArrayAtom::Delete(size_type i)
 {
 
 	if (i < length - 1)
@@ -73,6 +74,7 @@ void ArrayAtom::Delete(size_type i)
 	else {
 		length--;
 	}
+	return -1;// Doesn't matter
 
 
 

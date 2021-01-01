@@ -7,7 +7,7 @@ ArrayIter::~ArrayIter()
 {
 }
 
-void ArrayIter::Insert(size_type i, T elem)
+ArrayIter::T ArrayIter::Insert(size_type i, T elem)
 {
 	// Corner cases
 	// i L S
@@ -16,16 +16,18 @@ void ArrayIter::Insert(size_type i, T elem)
 	int j = length < size ? length++ : length - 1;
 	for (; j > i; j--) Array[j] = Array[j - 1]; 
 	Array[i] = elem;
+	return -1; //doesn't matter
 
 }
 
-void ArrayIter::Delete(size_type i)
+ArrayIter::T ArrayIter::Delete(size_type i)
 {
 	// Corner cases
 	// i L S
 	// 2. i > l
 	length--;
 	for (int j = i ; j < length; j++) Array[j] = Array[j+1]; 
+	return -1; //doesn't matter
 
 }
 
@@ -54,3 +56,4 @@ bool ArrayIter::isSorted()
 void ArrayIter::Merge(T *)
 {
 }
+

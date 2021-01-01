@@ -58,8 +58,8 @@ public:
 		}
 	}
 	// Abstract functions
-	virtual void Insert(size_type i, T elem) = 0; 
-	virtual	void Delete(size_type i) = 0; 
+	virtual T Insert(size_type i, T elem) = 0; 
+	virtual	T Delete(size_type i) = 0; 
 	virtual	size_type Search(T elem) = 0; 
 	
 	virtual	void Reverse() = 0; 
