@@ -21,6 +21,12 @@ void ArrayIter::Insert(size_type i, T elem)
 
 void ArrayIter::Delete(size_type i)
 {
+	// Corner cases
+	// i L S
+	// 2. i > l
+	length--;
+	for (int j = i ; j < length; j++) Array[j] = Array[j+1]; 
+
 }
 
 ArrayIter::size_type ArrayIter::Search(T elem)

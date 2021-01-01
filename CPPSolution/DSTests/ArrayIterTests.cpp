@@ -64,7 +64,23 @@ TEST_F(ArrayIterTest, Insert_ott) {
 	EXPECT_EQ(ott.GetSize(), 10); 
 	ASSERT_THAT(ott.GetVector(), ElementsAre(0,1,99,2,3));
 }
-TEST_F(ArrayIterTest, Delete) { }
+TEST_F(ArrayIterTest, Delete_empty) { 
+ // Corner case
+}
+
+
+TEST_F(ArrayIterTest, Delete_fullIncr) {
+	fullIncr.Delete(3); 
+	EXPECT_EQ(fullIncr.GetLength(), 9);
+	EXPECT_EQ(fullIncr.GetSize(), 10); 
+	ASSERT_THAT(fullIncr.GetVector(), ElementsAre(0,1,2,4,5,6,7,8,9));
+}
+TEST_F(ArrayIterTest, Delete_ott) {
+	ott.Delete(2);
+	EXPECT_EQ(ott.GetLength(), 3);
+	EXPECT_EQ(ott.GetSize(), 10);
+	ASSERT_THAT(ott.GetVector(), ElementsAre(0, 1, 3));
+}
 TEST_F(ArrayIterTest, Search) { }
 TEST_F(ArrayIterTest, Reverse) { }
 TEST_F(ArrayIterTest, Shift) { }
