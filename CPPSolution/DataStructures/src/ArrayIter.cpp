@@ -33,7 +33,36 @@ ArrayIter::T ArrayIter::Delete(size_type i)
 
 ArrayIter::size_type ArrayIter::Search(T elem)
 {
-	return size_type();
+	// binary search 
+	if (isAlwaySorted) {
+		size_type l=0 , m=length/2, h=length-1;
+		while (l <= h) {
+			if (elem == Array[m])
+			{ 
+				return m;
+			}
+			else
+			{ 
+				if (elem < Array[m]) 
+				{ 
+					h = m - 1; 
+				}
+				else
+				{
+					l = m + 1;
+				}
+			}
+			m =  ((h + l) / 2); 
+		} 
+	}
+	// Linear search
+	else 
+	{
+		for (int i = 0; i < length; ++i) {
+			if (Array[i] == elem) return i;
+		} 
+	}
+	return -1;
 }
 
 void ArrayIter::Reverse()

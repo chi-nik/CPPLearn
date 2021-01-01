@@ -81,7 +81,20 @@ TEST_F(ArrayIterTest, Delete_ott) {
 	EXPECT_EQ(ott.GetSize(), 10);
 	ASSERT_THAT(ott.GetVector(), ElementsAre(0, 1, 3));
 }
-TEST_F(ArrayIterTest, Search) { }
+TEST_F(ArrayIterTest, Search_empty) 
+{ 
+	EXPECT_EQ(empty.Search(3), -1); 
+}
+TEST_F(ArrayIterTest, Search_fullIncr) 
+{ 
+	EXPECT_EQ(fullIncr.Search(3), 3); 
+	EXPECT_EQ(fullIncr.Search(9), 9); 
+}
+TEST_F(ArrayIterTest, Search_ott) 
+{ 
+	EXPECT_EQ(ott.Search(1), 1); 
+	EXPECT_EQ(ott.Search(9), -1); 
+}
 TEST_F(ArrayIterTest, Reverse) { }
 TEST_F(ArrayIterTest, Shift) { }
 TEST_F(ArrayIterTest, Rotate) { }

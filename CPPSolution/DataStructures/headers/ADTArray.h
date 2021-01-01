@@ -10,6 +10,7 @@ protected:
 	//const size_type _Size=4;
 	#define ARRAY_SIZE 10 
 
+	bool isAlwaySorted = false;
 	size_type length; // what is the last element of the array
 	size_type size; // how large is the array in memory
 	T* Array;
