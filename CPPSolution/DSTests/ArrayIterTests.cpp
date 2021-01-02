@@ -95,6 +95,47 @@ TEST_F(ArrayIterTest, Search_ott)
 	EXPECT_EQ(ott.Search(1), 1); 
 	EXPECT_EQ(ott.Search(9), -1); 
 }
-TEST_F(ArrayIterTest, Reverse) { }
+TEST_F(ArrayIterTest, Reverse_empty) 
+{ 
+	empty.Reverse();
+	EXPECT_EQ(empty.GetLength(), 0);
+	EXPECT_EQ(empty.GetSize(), 10); 
+	ASSERT_THAT(empty.GetVector(), ElementsAre());
+}
+TEST_F(ArrayIterTest, Reverse_fullIncr) 
+{ 
+	fullIncr.Reverse(); 
+	EXPECT_EQ(fullIncr.GetLength(), 10);
+	EXPECT_EQ(fullIncr.GetSize(), 10); 
+	ASSERT_THAT(fullIncr.GetVector(), ElementsAre(9,8,7,6,5,4,3,2,1,0));
+}
+TEST_F(ArrayIterTest, Reverse_ott) 
+{ 
+	ott.Reverse(); 
+	EXPECT_EQ(ott.GetLength(), 4);
+	EXPECT_EQ(ott.GetSize(), 10); 
+	ASSERT_THAT(ott.GetVector(), ElementsAre(3,2,1,0));
+}
+TEST_F(ArrayIterTest, Shift_empty) 
+{ 
+	empty.Shift(1);
+	EXPECT_EQ(empty.GetLength(), 1);
+	EXPECT_EQ(empty.GetSize(), 10); 
+	ASSERT_THAT(empty.GetVector(), ElementsAre(0));
+}
+TEST_F(ArrayIterTest, Shift_fullIncr) 
+{ 
+	fullIncr.Shift(2); 
+	EXPECT_EQ(fullIncr.GetLength(), 10);
+	EXPECT_EQ(fullIncr.GetSize(), 10); 
+	ASSERT_THAT(fullIncr.GetVector(), ElementsAre(0,0,0,1,2,3,4,5,6,7));
+}
+TEST_F(ArrayIterTest, Shift_ott) 
+{ 
+	ott.Shift(1); 
+	EXPECT_EQ(ott.GetLength(), 5);
+	EXPECT_EQ(ott.GetSize(), 10); 
+	ASSERT_THAT(ott.GetVector(), ElementsAre(0,0,1,2,3));
+}
 TEST_F(ArrayIterTest, Shift) { }
 TEST_F(ArrayIterTest, Rotate) { }

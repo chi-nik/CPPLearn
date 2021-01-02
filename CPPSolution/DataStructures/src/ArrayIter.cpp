@@ -67,10 +67,31 @@ ArrayIter::size_type ArrayIter::Search(T elem)
 
 void ArrayIter::Reverse()
 {
+	// Two flavours, in-place and via copy
+	size_type i = 0, j = length-1;
+	while (i < j) {
+		T temp = Array[i];
+		Array[i] = Array[j];
+		Array[j] = temp; 
+		i++; j--;
+	}
+ 
 }
 
 void ArrayIter::Shift(size_type i)
 {
+	// Shift can  either increase the length or not, and fill shifted values with 0
+	// corner case when l == s, implemented 
+
+	bool overExtended = (length + i ) > size;
+		
+	size_type k = !overExtended ? length + i - 1 : size - 1;
+	size_type j = !overExtended ? length - 1 : (size - i - 1);
+	length = overExtended ? size : length + i; //new length
+
+	while (k >= 0) {
+		Array[k--] = j >= 0? Array[j--] : T(); 
+	} 
 }
 
 void ArrayIter::Rotate(size_type i)
