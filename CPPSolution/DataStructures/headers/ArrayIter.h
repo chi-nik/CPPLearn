@@ -27,6 +27,7 @@ public:
 
 	virtual void Merge(T *) override;
 
+	void Merge(ArrayIter ma);
 	// Inherited via ADTArrayBase
 };
 

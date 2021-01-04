@@ -100,10 +100,43 @@ void ArrayIter::Rotate(size_type i)
 
 bool ArrayIter::isSorted()
 {
-	return false;
+	// ascending order
+	for (int i = 0;i < length-1; ++i)
+	{
+		if (Array[i] > Array[i + 1]) return false;
+	}
+	return true;
 }
 
-void ArrayIter::Merge(T *)
+void ArrayIter::Merge(T *ma)
 {
+}
+
+void ArrayIter::Merge(ArrayIter mergeArray)
+{
+	// assuming the arrays are SORTED
+	int i = 0, j = 0, k = 0;
+	int new_size = mergeArray.size + size;
+	T* A = Array;
+	T* B = mergeArray.GetArray();
+	T* C = new T[new_size];
+	bool termA = !(i<length), termB = !(j<mergeArray.length);
+	while (!(termA && termB)){ //k <= (mergeArray.length+length-1)) {
+		if ((B[j] >= A[i] && !termA ) || termB) 
+		{
+			C[k++] = A[i++];
+			if (i >=length) termA = true, i--;
+		}
+		else if ((A[i] >= B[j] && !termB ) || termA) 
+		{
+			C[k++]=B[j++];
+			if (j >= mergeArray.length) termB = true, j--;
+		}
+	}
+
+	delete[] Array;
+	size = new_size;
+	length = k;
+	Array = C;
 }
 

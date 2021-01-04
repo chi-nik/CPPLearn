@@ -66,6 +66,7 @@ TEST_F(ArrayIterTest, Insert_ott) {
 }
 TEST_F(ArrayIterTest, Delete_empty) { 
  // Corner case
+	FAIL() << "Not implemented";
 }
 
 
@@ -137,5 +138,66 @@ TEST_F(ArrayIterTest, Shift_ott)
 	EXPECT_EQ(ott.GetSize(), 10); 
 	ASSERT_THAT(ott.GetVector(), ElementsAre(0,0,1,2,3));
 }
-TEST_F(ArrayIterTest, Shift) { }
-TEST_F(ArrayIterTest, Rotate) { }
+TEST_F(ArrayIterTest, isSorted_empty) 
+{ 
+	empty.Shift(1);
+	EXPECT_EQ(empty.GetLength(), 1);
+	EXPECT_EQ(empty.GetSize(), 10); 
+	ASSERT_THAT(empty.GetVector(), ElementsAre(0));
+	EXPECT_EQ(ott.isSorted(), true);
+}
+TEST_F(ArrayIterTest, isSorted_fullIncr) 
+{ 
+	fullIncr.Shift(2); 
+	EXPECT_EQ(fullIncr.GetLength(), 10);
+	EXPECT_EQ(fullIncr.GetSize(), 10); 
+	ASSERT_THAT(fullIncr.GetVector(), ElementsAre(0,0,0,1,2,3,4,5,6,7));
+	fullIncr.Set(0, 3);
+	EXPECT_EQ(fullIncr.isSorted(), false);
+}
+TEST_F(ArrayIterTest, isSorted_ott)
+{ 
+ 
+	ott.Shift(1); 
+	EXPECT_EQ(ott.GetLength(), 5);
+	EXPECT_EQ(ott.GetSize(), 10); 
+	ASSERT_THAT(ott.GetVector(), ElementsAre(0,0,1,2,3)); 
+	ott.Set(2, 2);
+	EXPECT_EQ(ott.isSorted(), true);
+	ott.Insert(0, 2);
+	EXPECT_EQ(ott.isSorted(), false);
+
+}
+TEST_F(ArrayIterTest, Rotate) { FAIL() << " Not Implemented"; }
+TEST_F(ArrayIterTest, Merge_ott)
+{ 
+ 
+	ott.Merge(fullIncr); 
+	EXPECT_EQ(ott.GetLength(), 14);
+	EXPECT_EQ(ott.GetSize(), 20); 
+	ASSERT_THAT(ott.GetVector(), ElementsAre(0,0,1,1,2,2,3,3,4,5,6,7,8,9)); 
+}
+TEST_F(ArrayIterTest, Merge_fullIncr)
+{ 
+ 
+	fullIncr.Merge(ott); 
+	EXPECT_EQ(fullIncr.GetLength(), 14);
+	EXPECT_EQ(fullIncr.GetSize(), 20); 
+	ASSERT_THAT(fullIncr.GetVector(), ElementsAre(0,0,1,1,2,2,3,3,4,5,6,7,8,9)); 
+}
+TEST_F(ArrayIterTest, Merge_five)
+{ 
+ 
+	five.Merge(five); 
+	EXPECT_EQ(five.GetLength(), 10);
+	EXPECT_EQ(five.GetSize(), 20); 
+	ASSERT_THAT(five.GetVector(), ElementsAre(0,0,1,1,2,2,3,3,4,4)); 
+}
+TEST_F(ArrayIterTest, Merge_empty)
+{ 
+ 
+	five.Merge(empty); 
+	EXPECT_EQ(five.GetLength(), 5);
+	EXPECT_EQ(five.GetSize(), 20); 
+	ASSERT_THAT(five.GetVector(), ElementsAre(0,1,2,3,4)); 
+}
