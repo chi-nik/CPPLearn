@@ -21,7 +21,7 @@ ArrayLinkedList::T ArrayLinkedList::Get(size_type i)
 	Node* it = head;
 	T get_value;
 	size_type it_i = 0;
-	while (it ) { 
+	while (it) { 
 		if (it_i++ == i) return it->val; 
 		it = it->next;
 	} 
