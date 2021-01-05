@@ -1,12 +1,15 @@
 #include "pch.h"
 using ::testing::ElementsAre;
 
+//template<typename T=ArrayIter>
 class ArrayIterTest : public ::testing::Test
 {
+public:
+	typedef ArrayIter TypeSUT;
 protected:
 	void SetUp() override 
 	{
-		for (int i = 0; i < full.GetSize(); i++) {
+		for (int i = 0; i < 10; /*full.GetSize();*/ i++) {
 			full.Set(i, 0);
 			fullIncr.Set(i, i);
 			if (i < 4) ott.Set(i,i);
@@ -15,11 +18,11 @@ protected:
 
 
 	}
-	ArrayIter empty;
-	ArrayIter ott;		// 0,1,2,3
-	ArrayIter full;		// 0,0,0,0,0,0,0,0,0,0 
-	ArrayIter fullIncr; // 0,1,2,3,4,5,6,7,8,9
-	ArrayIter five;		// 0,1,2,3,4
+	 TypeSUT empty;
+	 TypeSUT ott;		// 0,1,2,3
+	 TypeSUT full;		// 0,0,0,0,0,0,0,0,0,0 
+	 TypeSUT fullIncr; // 0,1,2,3,4,5,6,7,8,9
+	 TypeSUT five;		// 0,1,2,3,4
 };
 
 TEST_F(ArrayIterTest, Init) {
