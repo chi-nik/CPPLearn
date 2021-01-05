@@ -12,5 +12,6 @@
 #include "../DataStructures/headers/ArrayAtom.h"
 #include "../DataStructures/headers/ArrayIter.h"
 #include "../DataStructures/headers/ArrayRecursive.h"
+#include "../DataStructures/headers/ArrayLinkedList.h"
 
 //#include "../DataStructures/headers/Array.h"

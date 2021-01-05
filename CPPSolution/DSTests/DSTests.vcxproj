@@ -39,6 +39,7 @@
     <ClCompile Include="ADTArrayTests.cpp" />
     <ClCompile Include="ArrayIterTests.cpp" />
     <ClCompile Include="ArrayAtomTests.cpp" />
+    <ClCompile Include="ArrayLinkedListTests.cpp" />
     <ClCompile Include="ArrayRecursiveTests.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
