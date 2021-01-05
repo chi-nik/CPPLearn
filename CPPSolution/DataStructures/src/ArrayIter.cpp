@@ -121,7 +121,7 @@ void ArrayIter::Merge(ArrayIter mergeArray)
 	T* B = mergeArray.GetArray();
 	T* C = new T[new_size];
 	bool termA = !(i<length), termB = !(j<mergeArray.length);
-	while (!(termA && termB)){ //k <= (mergeArray.length+length-1)) {
+	while (!(termA && termB)){ 
 		if ((B[j] >= A[i] && !termA ) || termB) 
 		{
 			C[k++] = A[i++];
