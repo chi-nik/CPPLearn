@@ -27,6 +27,9 @@
     <ClCompile Include="src\ArrayRecursive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ArrayLinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\ADTArray.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\ArrayRecursive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\ArrayLinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
