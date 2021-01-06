@@ -21,58 +21,14 @@ void Towers::mv(char s, char  d, rng r ) {
 	 }
 	 else // mutliple
 	 {
-		 switch (s) {
-		 case 'A':
-			 switch (d) {
-				 //case 'A':
-				 case 'B':
-					 mv('A', 'C', rng(r.from - 1));
-					 mv('A', 'B', rng(r.from , r.from));
-					 mv('C', 'B', rng(r.from - 1)); 
-					 break;
-				 case 'C':
-					 mv('A', 'B', rng(r.from - 1));
-					 mv('A', 'C', rng(r.from , r.from));
-					 mv('B', 'C', rng(r.from - 1));
-					 break;
+		 std::string abc = "ABC";
+		 abc.erase(abc.find(s), 1);
+		 abc.erase(abc.find(d), 1);
+		 char o = abc[0];
 
-			 }
-			 break;
-		 case 'B':
-			 switch (d) {
-				 case 'A': 
-					 mv('B', 'C', rng(r.from - 1));
-					 mv('B', 'A', rng(r.from, r.from));
-					 mv('C', 'A', rng(r.from - 1));
-					 break;
-				 //case 'B':
-				 case 'C':
-					 mv('B', 'A', rng(r.from - 1));
-					 mv('B', 'C', rng(r.from, r.from));
-					 mv('A', 'C', rng(r.from - 1));
-					 break;
-
-			 }
-			 break;
-		 case 'C':
-			 switch (d) {
-				 case 'A':
-					 mv('C', 'B', rng(r.from - 1));
-					 mv('C', 'A', rng(r.from, r.from));
-					 mv('B', 'A', rng(r.from - 1));
-					 break;
-				 case 'B':
-					 mv('C', 'A', rng(r.from - 1));
-					 mv('C', 'B', rng(r.from, r.from));
-					 mv('A', 'B', rng(r.from - 1));
-					 break;
-				 //case 'C':
-
-			 }
-			 break;
-		 }
-
-
+		 mv(s, o, rng(r.from - 1));
+		 mv(s, d, rng(r.from , r.from));
+		 mv(o, d, rng(r.from - 1)); 
 	 }
 
  

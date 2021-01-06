@@ -17,7 +17,6 @@ public:
 		};
 
 	};
-	//enum Pile { A, B, C };
 	std::stack<int> A, B, C;
 	Towers(int); 
 	void mv(char source, char dest, rng);
