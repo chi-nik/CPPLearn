@@ -19,7 +19,8 @@ public:
 	};
 	//enum Pile { A, B, C };
 	std::stack<int> A, B, C;
-	Towers(); 
+	Towers(int); 
 	void mv(char source, char dest, rng);
+	std::string toString();
 	std::vector<int> asvec(std::stack<int> s);
 };
