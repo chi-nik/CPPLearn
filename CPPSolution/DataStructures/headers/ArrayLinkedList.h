@@ -5,7 +5,7 @@ class ArrayLinkedList :
 {
 private:
 	class Node;
-	Node* head= nullptr;
+	Node* head_= nullptr;
 public:
 	ArrayLinkedList();
 	~ArrayLinkedList();

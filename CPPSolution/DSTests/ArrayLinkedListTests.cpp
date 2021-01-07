@@ -56,15 +56,15 @@ TEST_F(ArrayLinkedListTest, Insert_empty) {
 
 TEST_F(ArrayLinkedListTest, Insert_fullIncr) { 
 	fullIncr.Insert(3, 99); 
-	EXPECT_EQ(fullIncr.GetLength(), 10);
-	EXPECT_EQ(fullIncr.GetSize(), 10); 
-	ASSERT_THAT(fullIncr.GetVector(), ElementsAre(0,1,2,99,3,4,5,6,7,8));
+	EXPECT_EQ(fullIncr.GetLength(), 11);
+	EXPECT_EQ(fullIncr.GetSize(), 11); 
+	ASSERT_THAT(fullIncr.GetVector(), ElementsAre(0,1,2,99,3,4,5,6,7,8,9));
 }
 
 TEST_F(ArrayLinkedListTest, Insert_ott) { 
 	ott.Insert(2, 99); 
 	EXPECT_EQ(ott.GetLength(), 5);
-	EXPECT_EQ(ott.GetSize(), 10); 
+	EXPECT_EQ(ott.GetSize(), 5); 
 	ASSERT_THAT(ott.GetVector(), ElementsAre(0,1,99,2,3));
 }
 TEST_F(ArrayLinkedListTest, Delete_empty) { 

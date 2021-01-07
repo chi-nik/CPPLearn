@@ -16,13 +16,13 @@ ArrayLinkedList::ArrayLinkedList()
 {
 }
 
-ArrayLinkedList::T ArrayLinkedList::Get(size_type i)
+ArrayLinkedList::T ArrayLinkedList::Get(size_type n)
 { 
-	Node* it = head;
+	Node* it = head_;
 	T get_value;
-	size_type it_i = 0;
+	size_type i = 0;
 	while (it) { 
-		if (it_i++ == i) return it->val; 
+		if (i++ == n) return it->val; 
 		it = it->next;
 	} 
 
@@ -31,7 +31,7 @@ ArrayLinkedList::T ArrayLinkedList::Get(size_type i)
 }
 ArrayLinkedList::Node* ArrayLinkedList::Append(T elem) {
 
-	Node* it = head;
+	Node* it = head_;
 	Node* new_node = new Node;
 	new_node->val = elem;
 	
@@ -42,8 +42,8 @@ ArrayLinkedList::Node* ArrayLinkedList::Append(T elem) {
 		it = it->next; 
 	}
 
-	if (!head) {
-		head = new_node;
+	if (!head_) {
+		head_ = new_node;
 	}
 	else
 	{
@@ -54,16 +54,15 @@ ArrayLinkedList::Node* ArrayLinkedList::Append(T elem) {
 
 
 }
-void ArrayLinkedList::Set(size_type i, T elem)
+void ArrayLinkedList::Set(size_type n, T elem)
 {
-	Node* it = head;
-	T get_value;
-	size_type it_i = 0;
+	Node* it = head_;
+	size_type i = 0;
 
-	while (it_i <= i) { 
+	while (i <= n) { 
 		if (!it) it=Append(T());
-		if(it_i != i) it = it->next; //don't move to the next node
-		it_i++;
+		if(i != n) it = it->next; //don't move to the next node
+		i++;
 	} 
 	it->val = elem;
 
@@ -77,8 +76,7 @@ ArrayLinkedList::T * ArrayLinkedList::GetArray()
 { 
 	//std::cout << " IN GET ARRAY OF ARRAYLINKEDLIST";
 	//conver to an array 
-	Node* it = head;
-	T get_value;
+	Node* it = head_;
 	size_type it_i = 0;
 	while (it) { 
 		it_i++;
@@ -86,7 +84,7 @@ ArrayLinkedList::T * ArrayLinkedList::GetArray()
 	} 
 	T* new_array = new T[it_i];
 	it_i = 0;
-	it = head; 
+	it = head_; 
 	while (it) { 
 		new_array[it_i++] = it->val;
 		it = it->next;
@@ -101,9 +99,23 @@ ArrayLinkedList::T * ArrayLinkedList::GetArray()
 
 }
 
- ArrayLinkedList::T ArrayLinkedList::Insert(size_type i, T elem)
+ ArrayLinkedList::T ArrayLinkedList::Insert(size_type n, T elem)
 {
-	 return T();
+	 Node* new_node = new Node;
+	 new_node->val = elem;
+	 Node* it = head_;
+	 Node* h = head_; // back iterator
+	 size_type i = 0;
+	 while (it) {
+		 if (i == n) {
+			 h->next = new_node;
+			 new_node->next = it;
+		 };
+		 it = it->next;
+		 if (i > 0) h = h->next;
+		 i++;
+	 }
+	 return elem;
 }
 
  ArrayLinkedList::T ArrayLinkedList::Delete(size_type i)
