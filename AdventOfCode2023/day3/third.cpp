@@ -25,6 +25,7 @@ using namespace std;
 //#define DLOG_id() DLOG 
 //#define DLOG(msg, ...) cout << msg DEFER(DLOG_id)()(__VA_ARGS__) << endl; 
 bool is_debug = false;
+class C;
 class Symbol {
 	//Symbol
 	public:
@@ -39,6 +40,17 @@ class Symbol {
 class Number {
 	public:
 		int num{0};
+		vector<C*> cells;
+		friend ostream& operator<<(ostream& s, const Number& n);
+		bool operator==(const Number& rhs){ //, const Number& rhs){
+			bool result = num == rhs.num;
+			return result;
+			//for(auto c : cells) {
+			//	result = result && (lhs.c->r == rhs.c->r) && (lhs.c->c == rhs.c->c) ;
+			//}
+			//return result;
+
+		}
 };
 class C { 
 	public:
@@ -46,22 +58,23 @@ class C {
 		Number* n{nullptr};
 		const Symbol& s;//=Symbol('.');
 		C(int _r, int _c) : r{_r}, c{_c}, s{*(new Symbol('.'))} {
-			thisId=to_string(_r)+ " " + to_string(_c);
-			if(is_debug) cout << "Created " << thisId << endl;
+			this_id=to_string(_r)+ " " + to_string(_c);
+			if(is_debug) cout << "Created " << this_id << endl;
 
 		};  
 		C(int _r, int _c, Number* _nc) : r{_r}, c{_c}, n{_nc} , s{*(new Symbol('.'))}
 		{
-			thisId=to_string(_r)+ " " + to_string(_c) + " " + to_string(n->num) + " " + s.sym +  " [N]";
-			if(is_debug) cout << "Created " << thisId << endl;
+			this_id=to_string(_r)+ " " + to_string(_c) + " " + to_string(n->num) + " " + s.sym +  " [N]";
+			n->cells.push_back(this);
+			if(is_debug) cout << "Created " << this_id << endl;
 		};  
 		C(int _r, int _c, const Symbol& sc) :r{_r}, c{_c}, s{sc} { 
 
-			thisId=to_string(_r)+ " " + to_string(_c) + " " + sc.sym + " [S]";
+			this_id=to_string(_r)+ " " + to_string(_c) + " " + sc.sym + " [S]";
 			if(is_debug) {
 			cout << "Symbol copy sc@ " << &sc << endl;
 			cout << "Symbol copy s@ " << &s << endl;
-			cout << "Created " << thisId << endl;
+			cout << "Created " << this_id << endl;
 			}
 		};  
 #if C_cc == MY
@@ -69,8 +82,8 @@ class C {
 			this->r = other.r;
 			this->c = other.c;
 			this->n = other.n;
-			this->thisId= other.thisId;
-			if(is_debug) cout << "Copying " << other.thisId << endl;
+			this->this_id= other.this_id;
+			if(is_debug) cout << "Copying " << other.this_id << endl;
 
 
 		}
@@ -85,13 +98,21 @@ C(const C& other) { cout << "copy My other" << endl; }
 		friend ostream& operator<<(ostream& s, const C& c);
 		~C() {
 
-		if(is_debug) cout << "Destroyed " << thisId << " " << ((n) ? to_string(n->num) : "" )<<  endl;
+		if(is_debug) cout << "Destroyed " << this_id << " " << ((n) ? to_string(n->num) : "" )<<  endl;
 		}
 	private: 
-		string thisId;
+		string this_id;
 
 };
 
+ostream& operator<<(ostream& s, const Number& n){
+	//auto n = (c.n) ?  (c.n)->num  : -1;
+	s << "["<< to_string(n.num) <<" @ " ;
+	for(auto c : n.cells) {
+		s << *c;
+	}
+	return s;
+}
 ostream& operator<<(ostream& s, const C& c){
 	auto n = (c.n) ?  (c.n)->num  : -1;
 	s << "["<< n <<" | " ;
@@ -102,36 +123,29 @@ ostream& operator<<(ostream& s, const C& c){
 class Grid{
 	public:
 		vector<vector<C>> grid{};
-		vector<string> rawGrid;
-		Grid(vector<string>&& a) : rawGrid{std::move(a)}  {};
+		vector<string> raw_grid;
+		Grid(vector<string>&& a) : raw_grid{std::move(a)}  {};
 		
-		void printRaw(){
+		void Gridify(){
 			int rw = 0;
-			for(auto a:rawGrid) {
-				//cout << a << endl;
-				auto& gy = gridify(a, rw++);
-				//cout << "GY &" << &gy[8].s << endl;
-				cout << "GY :" << gy[8] << endl;
-				cout << "right after GY and before push_back " << endl;
+			for(auto a:raw_grid) {
+				auto& gy = GridifyRow(a, rw++);
 				grid.push_back(gy);
-				cout << "after push_back " << gy[8] << endl;
 			}
 
 			cout << "Got to here" << endl;
 			for(auto a: grid) {
 				for(auto b: a) {
-			//		cout << b << endl;
+					// cout << b << endl;
 				}
 			}
 		}
 
-		vector<C>& gridify(string line, int row){
+		vector<C>& GridifyRow(string line, int row){
 			Number* cn{nullptr};
 			string cns;
 			int col=0;
-			vector<C>* res_al = new vector<C>{}; 
-			cout << "Allocated val of res_al is " << res_al << endl;
-			vector<C> &res = *res_al;
+			vector<C> &res = *(new vector<C>{});
 			res.reserve(150); 
 			for(auto c : line) {
 				//digit
@@ -181,7 +195,8 @@ class Grid{
 int main(){
 //vector<string> input =  file_reader("input.txt");
 Grid g(file_reader("input.txt"));
-g.printRaw();
+g.Gridify();
+cout << *g.grid[9][16].n << endl;
 //Symbol s1('v');
 //cout << s1.sym << "@ " << &s1 << endl;;
 //C a(2,3, std::move(s1));
