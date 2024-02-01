@@ -1,6 +1,8 @@
 #pragma once
 #include "C.h"
 #include "Symbol.h"
+#include "Number.h"
+#include <set>
 
 class Grid{
 	public:
@@ -8,8 +10,49 @@ class Grid{
 		vector<string> raw_grid;
 		Grid(vector<string>&& a) : raw_grid{std::move(a)}  {};
 		
+		vector<C> GetListSyms() {
+			vector<C> res;
+			for(auto a:grid){
+				for(auto b:a){
+					if(b.s.sym != '.') res.push_back(b) ;
+				}
+			}
+			return res;
+		}
+		vector<Number> GetUniqueNums(vector<C> rng){ //vector<C>
+			// get nums
+			vector<Number> res;
+			std::set<Number*> set_nums;
+			for(auto a: rng) {
+				if(a.n) set_nums.insert(a.n);
+			}
+			for(auto a: set_nums) {
+				//if(a.n) set_nums.insert(a.n);
+				cout << *a;
+				res.push_back(*a);
+			}
+			return res;
+		}
 		vector<C> GetRegion(C c, int n){
+			vector<C> res;
+			
+			//generate region indexes
+			for(int col=c.c-n; (col < (int) grid[0].size()) && (col <= c.c+n) ; col++) {
+				//cout << "Col is : " << col << endl;
+				if(col < 0) {cout << "continue \n"; continue;}
+				for(int row=c.r-n; row < (int) grid.size() && row <= c.r+n; row++) {
+					if(row < 0){cout << "continue \n"; continue;} 
+					//cout << "Row is : " << col << endl;
+					res.push_back(grid[row][col]);
+					cout << grid[row][col];
 
+
+				
+				}
+			}
+			return res;
+			//for(int row=c.r-n; row<grid[0].size(); row++
+			
 
 
 		}

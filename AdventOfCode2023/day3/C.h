@@ -4,7 +4,7 @@
 class C { 
 	public:
 		int r,c;
-		Number* n;//{nullptr};
+		Number* n{nullptr};//{nullptr};
 		const Symbol& s;//=Symbol('.');
 		C(int _r, int _c) : r{_r}, c{_c}, s{*(new Symbol('.'))} {
 			this_id=to_string(_r)+ " " + to_string(_c);
