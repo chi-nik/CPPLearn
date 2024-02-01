@@ -34,25 +34,16 @@ for(auto symbol: symbols) {
 }
 for(auto symbol: symbols) {
 	cout << "Symbol: " << symbol;
-	auto unique_nums = g.GetUniqueNums(g.GetRegion(symbol,1));
+	if (symbol.s.sym != '*') continue;
 
-	for ( auto num: unique_nums) {
-		//cout << "  Number" << num;
-		cout << "  Number" << num.num << "|";
-		sum = sum + num.num;
+	auto unique_nums = g.GetUniqueNums(g.GetRegion(symbol,1));
+	if((int) unique_nums.size() == 2) {
+		int gear_ratio=unique_nums[0].num*unique_nums[1].num;
+		sum = sum + gear_ratio;
 		cout << "  sum" << sum << endl;;
 	}
 }
-// bug as 848 in the last most colum returns as 0
-cout << "Sum: " << sum+848;
-//g.GetUniqueNums(br);
-
-//cout << *g.grid[9][16].n << endl;
-//cout << *g.grid[9][16].n << endl;
-//Symbol s1('v');
-//cout << s1.sym << "@ " << &s1 << endl;;
-//C a(2,3, std::move(s1));
-//cout << a << endl;
+cout << "Sum: " << sum;
 
 
 }
