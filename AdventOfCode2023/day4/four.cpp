@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <set>
+#include <deque>
 #include "../file_reader.h"
 
 class Card{
@@ -13,6 +14,28 @@ class Card{
 	public:
 		int points{0};
 		Card(std::string s): raw_string{s}{
+		}
+		void getWonCards(std::deque<int>& v){
+			vector<int> result; 
+			// skim to get the number
+			int nc{0};
+			if(v.begin() != v.end()){
+				nc=v.front();
+				v.pop_front();
+				v.push_back(0);
+				cout << "Popped: " << nc << std::endl;
+			}
+			cout << "Added Cards: "  << endl;
+			for(unsigned i=0; i < points; i++) {
+				
+				v.at(i)+=(nc)+1;
+				cout << v.at(i) << ' ';
+			}
+			cout << std::endl << "V: ";
+			for(auto i=v.cbegin(); i != v.cend(); i++){
+				cout << *i << ' ';
+			}
+			cout << endl;
 		}
 		void parse(){
 			std::stringstream ss(raw_string.erase(0,10));
@@ -48,8 +71,8 @@ class Card{
 				if(it!=tmp.end()) our_wins.push_back(*it);
 
 			}
-			if(our_wins.size() > 0) points = (int)(1 << ((int)our_wins.size()-1)) ;
-			
+			//if(our_wins.size() > 0) points = (int)(1 << ((int)our_wins.size()-1)) ;
+			points =our_wins.size() ;
 
 		}
 		void toStr(){
@@ -70,12 +93,12 @@ int main(){
 	c.parse();
 	c.computeWinner();
 	result.push_back(c);
-	//c.toStr();
 	}
+	std::deque<int> wonc( 12 );
 	for(auto a:result){
 		a.toStr();
-		total_points= total_points + a.points;
-		cout << total_points << std::endl;
+		total_points+=(wonc.front()+1);
+		a.getWonCards(wonc);
 
 	}
 	cout << "Points: " << total_points << std::endl;
